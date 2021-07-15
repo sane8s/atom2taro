@@ -1,4 +1,3 @@
-# atom2taro
 AtoM 2 TARO XSLT Conversion (atom2taro)
 =====
 
