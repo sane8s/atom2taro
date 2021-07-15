@@ -56,7 +56,7 @@ Run TARO-clean (optional)
 (Note: line locations refer to the final XML file, and they are approximate)
 
 line 2
-Delete '<ead>' [In Oxygen, the close tag is often automatically removed]
+Delete <ead> [In Oxygen, the close tag is often automatically removed]
 
 line 4
 Review '<eadid>'
@@ -65,34 +65,34 @@ If no 00000, enter 5-digit taro# at end of urn:taro:XXXX.____
 
 line 30
 Find
-'<archdesc level="collection" relatedencoding="ISAD(G)v2">'
+<archdesc level="collection" relatedencoding="ISAD(G)v2">
 Replace
-'<archdesc level="collection" type="inventory" audience="external">'
+<archdesc level="collection" type="inventory" audience="external">
 
 
 line 47
 Find
-':ns0="xmlns:xlink" ns0:'
+:ns0="xmlns:xlink" ns0:
 Replace
-':'
+:
 
 line 35
-Review '<origination>' to determine appropriate @source, lcnaf or local. Delete extra <*name> tags
+Review <origination> to determine appropriate @source, lcnaf or local. Delete extra <*name> tags
 
 line 75
-Review '<controlaccess>' to determine appropriate @source.
+Review <controlaccess> to determine appropriate @source.
 
 bottom of doc (optional)
 Collections with uploaded finding aids
-Add code at the end of the '<archdesc>' tag  at the bottom of the document (modify URL for collection):
+Add code at the end of the <archdesc> tag  at the bottom of the document (modify URL for collection):
 
-'<dsc type="combined">
+<dsc type="combined">
             <head>Detailed Description of the Collection</head>
             <p><extref xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:show="new" xlink:actuate="onRequest" xlink:href="https://XXXX.edu/downloads/[collslug].pdf">A preliminary inventory of the collection is available.</extref> </p>
- </dsc>'  
+ </dsc> 
 
 ## Common validation errors and fixes
-'<ead>' delete extra tag and close tag.
-'@normal' in '<unitdate>' had invalid formatting, like "undated", "2000/09/09". Validate to match formatting, 0000, yyyy, yyyy/yyyy, yyyy-mm-dd/yyyy-mm-dd, yyyy-mm, etc.
-'<extref>' xlink namespace. Delete ':ns0="xmlns:xlink" ns0:'
+<ead> delete extra tag and close tag.
+@normal in <unitdate> had invalid formatting, like "undated", "2000/09/09". Validate to match formatting, 0000, yyyy, yyyy/yyyy, yyyy-mm-dd/yyyy-mm-dd, yyyy-mm, etc.
+<extref> xlink namespace. Delete :ns0="xmlns:xlink" ns0:
 Contact: Sandra for support.
