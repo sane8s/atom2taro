@@ -1,5 +1,6 @@
 AtoM 2 TARO XSLT Conversion (atom2taro)
 =====
+See [atom2taro-documentation.pdf](https://github.com/sane8s/atom2taro/blob/main/atom2taro-documentation.pdf)
 
 ## About
 AtoM to TARO XSLT Conversion, atom2taro, facilitates XML export from the Access to Memory (AtoM) Archival Management System to a compliant XML import into Texas Archival Resources Online (TARO) system. The stylesheet converts the DTD-based 2002 EAD XML export from AtoM and conforms the data to comply with TARO best practices and schema-based XML template.
