@@ -92,8 +92,8 @@ Add code at the end of the <archdesc> tag  at the bottom of the document (modify
  </dsc>  
 
 ## Common validation errors and fixes
-*ead delete extra tag and close tag.
-*@normal in <unitdate> had invalid formatting, like "undated", "2000/09/09". Validate to match formatting, 0000, yyyy, yyyy/yyyy, yyyy-mm-dd/yyyy-mm-dd, yyyy-mm, etc.
-*extref xlink namespace. Delete :ns0="xmlns:xlink" ns0:
+ead tag delete extra tag and close tag.
+@normal in <unitdate> had invalid formatting, like "undated", "2000/09/09". Validate to match formatting, 0000, yyyy, yyyy/yyyy, yyyy-mm-dd/yyyy-mm-dd, yyyy-mm, etc.
+extref tag xlink namespace. Delete :ns0="xmlns:xlink" ns0:
 
 Contact: Sandra for support.
