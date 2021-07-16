@@ -12,7 +12,7 @@ There is also modified code from ead-schema-to-dtd.xsl, developed by Woodson Res
 
 ## How to Use
 1. Download and save atom2taro.xsl and TARO-clean.xsl to an accessible file location for staff.
-2. Customize atom2taro.xsl for your repository according to the options outlined above.
+2. Customize atom2taro.xsl for your repository according to the options outlined above (in documentation pdf).
 3. Change ‘repo-’ to your repository abbreviation to indicate that it is your customized version.
 4. Create transformation scenarios in your XML editor (like, Oxygen)
 5. Export XML file(s) from AtoM site and save file(s) to computer or accessible location for staff.
