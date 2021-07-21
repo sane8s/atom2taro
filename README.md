@@ -20,6 +20,6 @@ There is also modified code from ead-schema-to-dtd.xsl, developed by Woodson Res
 7. Run atom2taro
 8. After atom2taro, review line 38. Modify if a unitdate tag should be bulk or inclusive dates
 9. Do not validate the XML between transformation scenarios
-10. Run TARO-clean (optional)  
+10. Run TARO-clean (optional) -[Issue reported](https://github.com/sane8s/atom2taro/issues/1), not recommended at this time. 
 
 Contact: Sandra for support.
