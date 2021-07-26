@@ -217,7 +217,7 @@ There is also modified code from ead-schema-to-dtd.xsl, developed by Woodson Res
     <!--========== END of dtd2schema.xsl =========-->
     
     <!-- Remove descriptions from <c> tags -->
-    <xsl:template match="c/odd|physloc|controlaccess|phystech|accessrestrict|userestrict"/> 
+    <xsl:template match="c/odd|physloc|controlaccess|phystech|accessrestrict|userestrict|bioghist"/> 
     <xsl:template match="c/c/did/physdesc|langmaterial|origination"></xsl:template>
     <xsl:template match="c/scopecontent/@encodinganalog"></xsl:template>
     <xsl:template match="c/did/unittitle/@encodinganalog"/>
