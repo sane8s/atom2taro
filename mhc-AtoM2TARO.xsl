@@ -217,7 +217,7 @@ There is also modified code from ead-schema-to-dtd.xsl, developed by Woodson Res
     <!--========== END of dtd2schema.xsl =========-->
     
     <!-- Remove descriptions from <c> tags -->
-    <xsl:template match="c/odd|physloc|controlaccess|phystech|accessrestrict|userestrict|bioghist"/> <!-- +remove bioghist -->
+    <xsl:template match="c/odd|physloc|controlaccess|phystech|accessrestrict|userestrict|bioghist"/>
     <xsl:template match="c/c/did/physdesc|langmaterial|origination"></xsl:template>
     <xsl:template match="c/scopecontent/@encodinganalog"></xsl:template>
     <xsl:template match="c/did/unittitle/@encodinganalog"/>
@@ -278,10 +278,6 @@ There is also modified code from ead-schema-to-dtd.xsl, developed by Woodson Res
     <xsl:variable name="titlep" select="ead/eadheader/filedesc/titlestmt/titleproper"/>
     <xsl:variable name="title" select="ead/archdesc/did/unittitle"/>
     <xsl:variable name="identifier" select="ead/archdesc/did/unitid[@encodinganalog='3.1.1']"/>    
-    <xsl:variable name="creatorPersname" select="ead/archdesc/did/origination/persname"/>
-    <xsl:variable name="creatorCorpname" select="ead/archdesc/did/origination/corpname"/>
-    <xsl:variable name="creatorFamname" select="ead/archdesc/did/origination/famname"/>
-    <xsl:variable name="creatorName" select="ead/archdesc/did/origination/name"/>
     <xsl:variable name="extent" select="ead/archdesc/did/physdesc"/>
     <xsl:variable name="scopecontentp" select="ead/archdesc/scopecontent/p"/>
     <!-- Variables below divide repository corpname and subarea using the comma separator based on the repository field in AtoM. This may vary for your repository. You can use option to insert text directly by switching comment tags.-->
@@ -313,7 +309,7 @@ There is also modified code from ead-schema-to-dtd.xsl, developed by Woodson Res
     </xsl:template>
     <xsl:template name="origination">
         <origination label="Creator:">
-            <!-- Creator count test... uncomment to check if creator total are being counted correctly.
+            <!-- Creator count test... uncomment to check if creator total are being counted correctly.                
             <name><xsl:text>Total Creators: </xsl:text><xsl:value-of select="$creatorCount"/></name>
             <persname><xsl:value-of select="$creatorPersnameCount"/></persname>
             <corpname><xsl:value-of select="$creatorCorpnameCount"/></corpname>
@@ -328,19 +324,19 @@ There is also modified code from ead-schema-to-dtd.xsl, developed by Woodson Res
                 </xsl:if>
                 <xsl:if test="$creatorCorpnameCount>=1">
                     <xsl:for-each select="origination/corpname">
-                        <corpname source="lcnaf" encodinganalog="110"><xsl:value-of select="$creatorCorpname"/></corpname><!-- Default @source="lcnaf"-->
-                        <!--<corpname source="local" encodinganalog="110"><xsl:value-of select="$creatorCorpname"/></corpname> Default @source="local"-->
+                        <corpname source="lcnaf" encodinganalog="110"><xsl:value-of select="current()"/></corpname><!-- Default @source="lcnaf"-->
+                        <!--<corpname source="local" encodinganalog="110"><xsl:value-of select="current()"/></corpname> Default @source="local"-->
                     </xsl:for-each>                    
                 </xsl:if>
                 <xsl:if test="$creatorFamnameCount>=1">
                     <xsl:for-each select="origination/famname">
-                        <famname source="local" encodinganalog="100"><xsl:value-of select="$creatorFamname"/></famname><!-- Default @source="local"-->
+                        <famname source="local" encodinganalog="100"><xsl:value-of select="current()"/></famname><!-- Default @source="local"-->
                     </xsl:for-each>                    
                 </xsl:if>
                 <xsl:if test="$creatorNameCount>=1">
                     <xsl:for-each select="origination/name">
-                        <corpname source="lcnaf" encodinganalog="110"><xsl:value-of select="$creatorName"/></corpname> <!-- Default @source="lcnaf"-->
-                        <!--<corpname source="local" encodinganalog="110"><xsl:value-of select="$creatorName"/></corpname> Default @source="local"-->
+                        <corpname source="lcnaf" encodinganalog="110"><xsl:value-of select="current()"/></corpname> <!-- Default @source="lcnaf"-->
+                        <!--<corpname source="local" encodinganalog="110"><xsl:value-of select="current()"/></corpname> Default @source="local"-->
                     </xsl:for-each>                    
                 </xsl:if>
             </xsl:if>
