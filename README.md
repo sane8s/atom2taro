@@ -1,6 +1,6 @@
 AtoM 2 TARO XSLT Conversion (atom2taro)
 =====
-See [atom2taro-documentation.pdf](https://github.com/sane8s/atom2taro/blob/main/atom2taro-documentation.pdf)
+See [atom2taro-documentation.pdf](atom2taro-documentation.pdf)
 
 ## About
 AtoM to TARO XSLT Conversion (atom2taro) facilitates XML export from the Access to Memory (AtoM) Archival Management System to a compliant XML import into Texas Archival Resources Online (TARO) system. The stylesheet converts the DTD-based 2002 EAD XML export from AtoM and conforms the data to comply with TARO best practices and schema-based XML template.
@@ -18,8 +18,13 @@ There is also modified code from ead-schema-to-dtd.xsl, developed by Woodson Res
 5. Export XML file(s) from AtoM site and save file(s) to computer or accessible location for staff.
 6. Open exported XML file in XML Editor (like Oxygen)
 7. Run atom2taro
-8. After atom2taro, review line 38. Modify if a unitdate tag should be bulk or inclusive dates
-9. Do not validate the XML between transformation scenarios
-10. Run TARO-clean (optional) -[Issue reported](https://github.com/sane8s/atom2taro/issues/1), not recommended at this time. 
+8. After atom2taro, review, modify, and validate new XML file. See Finishing Up section in [atom2taro-documentation.pdf](atom2taro-documentation.pdf)
+    1. Modify ead tag attributes (line 2)
+    2. Review eadid tag. Confirm TARO User and 5-digit TARO# (line 4)
+    3. Modify archdesc tag attributes (line 30)
+    4. Review <origination> to determine appropriate @source, lcnaf or local. Delete extra <*name> tags (line 35)
+    5. Validate extref tag (line 47)
+    6. Review controlaccess child tags to determine appropriate values for source attribute.
+    7. (optional for collection-level descriptions) Add dsc tag at the end of archdesc tag that links to uploaded PDF inventory. (bottom of XML file)
 
 Contact: Sandra for support.

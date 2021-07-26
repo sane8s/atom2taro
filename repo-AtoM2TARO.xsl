@@ -217,7 +217,7 @@ There is also modified code from ead-schema-to-dtd.xsl, developed by Woodson Res
     <!--========== END of dtd2schema.xsl =========-->
     
     <!-- Remove descriptions from <c> tags -->
-    <xsl:template match="c/odd|physloc|controlaccess|phystech|accessrestrict|userestrict"/> 
+    <xsl:template match="c/odd|physloc|controlaccess|phystech|accessrestrict|userestrict|bioghist"/> 
     <xsl:template match="c/c/did/physdesc|langmaterial|origination"></xsl:template>
     <xsl:template match="c/scopecontent/@encodinganalog"></xsl:template>
     <xsl:template match="c/did/unittitle/@encodinganalog"/>
@@ -280,10 +280,6 @@ There is also modified code from ead-schema-to-dtd.xsl, developed by Woodson Res
     <xsl:variable name="titlep" select="ead/eadheader/filedesc/titlestmt/titleproper"/>
     <xsl:variable name="title" select="ead/archdesc/did/unittitle"/>
     <xsl:variable name="identifier" select="ead/archdesc/did/unitid[@encodinganalog='3.1.1']"/>
-    <xsl:variable name="creatorPersname" select="ead/archdesc/did/origination/persname"/>
-    <xsl:variable name="creatorCorpname" select="ead/archdesc/did/origination/corpname"/>
-    <xsl:variable name="creatorFamname" select="ead/archdesc/did/origination/famname"/>
-    <xsl:variable name="creatorCorpname2" select="ead/archdesc/did/origination/name"/>
     <xsl:variable name="extent" select="ead/archdesc/did/physdesc"/>
     <xsl:variable name="scopecontentp" select="ead/archdesc/scopecontent/p"/>
     <!-- Variables below divide repository corpname and subarea using the comma separator based on the repository field in AtoM. This may vary for your repository. You can use option to insert text directly by switching comment tags.-->
@@ -292,6 +288,13 @@ There is also modified code from ead-schema-to-dtd.xsl, developed by Woodson Res
     <xsl:variable name="repositoryCorpname" select="substring-after($repository,',')"/>  
     <!--<xsl:variable name="repositorySubarea"><xsl:text>XXXXRepo Subarea</xsl:text></xsl:variable>
     <xsl:variable name="repositoryCorpname"><xsl:text>XXXXRepo Corpname</xsl:text></xsl:variable>--> 
+    
+    <!-- Get variables for count totals for elements -->
+    <xsl:variable name="creatorPersnameCount" select="count(ead/archdesc/did/origination/persname)"/>
+    <xsl:variable name="creatorCorpnameCount" select="count(ead/archdesc/did/origination/corpname)"/>
+    <xsl:variable name="creatorFamnameCount" select="count(ead/archdesc/did/origination/famname)"/>
+    <xsl:variable name="creatorNameCount" select="count(ead/archdesc/did/origination/name)"/>
+    <xsl:variable name="creatorCount" select="$creatorCorpnameCount+$creatorPersnameCount+$creatorFamnameCount+$creatorNameCount"/>
        
      <!-- <eadid> tag inserting values for $taroUser and 5-digit $taroId -->
     <xsl:template match="eadid">
@@ -309,16 +312,39 @@ There is also modified code from ead-schema-to-dtd.xsl, developed by Woodson Res
         </did>
     </xsl:template>
     <xsl:template name="origination">
-        <origination label="Creator:">                
-            <persname source="lcnaf" encodinganalog="100"><xsl:value-of select="$creatorPersname"/></persname>
-            <corpname source="lcnaf" encodinganalog="110"><xsl:value-of select="$creatorCorpname"/></corpname>
-            <corpname source="lcnaf" encodinganalog="110"><xsl:value-of select="$creatorCorpname2"/></corpname>
-            <famname source="lcnaf" encodinganalog="100"><xsl:value-of select="$creatorFamname"/></famname>
-            <!--<persname source="local" encodinganalog="100"><xsl:value-of select="$creatorPersname"/></persname>
-            <corpname source="local" encodinganalog="110"><xsl:value-of select="$creatorCorpname"/></corpname>
-            <corpname source="local" encodinganalog="110"><xsl:value-of select="$creatorCorpname2"/></corpname>
-            <famname source="local" encodinganalog="100"><xsl:value-of select="$creatorFamname"/></famname> Set default @source attribute or uncomment and transform both to choose for each finding aid -->
-         </origination> 
+        <origination label="Creator:">
+            <!-- Creator count test... uncomment to check if creator total are being counted correctly.                
+            <name><xsl:text>Total Creators: </xsl:text><xsl:value-of select="$creatorCount"/></name>
+            <persname><xsl:value-of select="$creatorPersnameCount"/></persname>
+            <corpname><xsl:value-of select="$creatorCorpnameCount"/></corpname>
+            <famname><xsl:value-of select="$creatorFamnameCount"/></famname>
+            <name><xsl:value-of select="$creatorNameCount"/></name>-->
+            <xsl:if test="$creatorCount>=1">
+                <xsl:if test="$creatorPersnameCount>=1">
+                    <xsl:for-each select="origination/persname">
+                        <persname source="lcnaf" encodinganalog="100"><xsl:value-of select="current()"/></persname><!-- Default @source="lcnaf"-->
+                        <!--<persname source="local" encodinganalog="100"><xsl:value-of select="current()"/></persname> Default @source="local"-->
+                    </xsl:for-each>                    
+                </xsl:if>
+                <xsl:if test="$creatorCorpnameCount>=1">
+                    <xsl:for-each select="origination/corpname">
+                        <corpname source="lcnaf" encodinganalog="110"><xsl:value-of select="current()"/></corpname><!-- Default @source="lcnaf"-->
+                        <!--<corpname source="local" encodinganalog="110"><xsl:value-of select="current()"/></corpname> Default @source="local"-->
+                    </xsl:for-each>                    
+                </xsl:if>
+                <xsl:if test="$creatorFamnameCount>=1">
+                    <xsl:for-each select="origination/famname">
+                        <famname source="local" encodinganalog="100"><xsl:value-of select="current()"/></famname><!-- Default @source="local"-->
+                    </xsl:for-each>                    
+                </xsl:if>
+                <xsl:if test="$creatorNameCount>=1">
+                    <xsl:for-each select="origination/name">
+                        <corpname source="lcnaf" encodinganalog="110"><xsl:value-of select="current()"/></corpname> <!-- Default @source="lcnaf"-->
+                        <!--<corpname source="local" encodinganalog="110"><xsl:value-of select="current()"/></corpname> Default @source="local"-->
+                    </xsl:for-each>                    
+                </xsl:if>
+            </xsl:if>
+        </origination> 
     </xsl:template>
     <xsl:template name="units-abstract">
         <unittitle label="Title:" encodinganalog="245$a"><xsl:value-of select="$title"/></unittitle>
