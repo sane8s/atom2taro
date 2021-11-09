@@ -447,7 +447,7 @@ There is also modified code from ead-schema-to-dtd.xsl, developed by Woodson Res
     </xsl:template> 
     <xsl:template match="archdesc/userestrict">
         <userestrict encodinganalog="540">
-            <head>Use Restricitons</head>
+            <head>Use Restrictions</head>
             <xsl:for-each select="p">
                 <p><xsl:value-of select="current()"/></p>
             </xsl:for-each>
