@@ -562,13 +562,13 @@ There is also modified code from ead-schema-to-dtd.xsl, developed by Woodson Res
                 </xsl:when>
             </xsl:choose>
             <xsl:choose>
-                <xsl:when test="geoname">
+                <xsl:when test="geogname">
                     <controlaccess>
                         <head>Place</head>
-                        <xsl:for-each select="geoname">
+                        <xsl:for-each select="geogname">
                             <geogname source="lcsh" encodinganalog="651"><xsl:value-of select="current()"/></geogname>
                         </xsl:for-each>
-                        <!-- <xsl:for-each select="geoname">
+                        <!-- <xsl:for-each select="geogname">
                             <geogname source="local" encodinganalog="651"><xsl:value-of select="current()"/></geogname>
                         </xsl:for-each> -->
                     </controlaccess>
